@@ -1,0 +1,27 @@
+- name: create upperdir for overlay
+  shell:
+    cmd: install -d -o {{ non_admin_user }} -g schueler /home/.{{ non_admin_user }}_rw
+
+- name: create working dir for overlay
+  file:
+    path: /home/work
+    state: directory
+
+- name: add overlay mount point to /etc/fstab
+  mount:
+    src: none
+    path: /home/{{ non_admin_user }}
+    fstype: overlay
+    opts: lowerdir=/home/{{ non_admin_user }},upperdir=/home/.{{ non_admin_user }}_rw,workdir=/home/work
+    state: present
+
+- name: copy shutdownhook service -- deletes user files when rebooting
+  copy:
+    src: files/shutdownhook.service
+    dest: /etc/systemd/system/shutdownhook.service
+
+- name: create sym link for service
+  file:
+   src: /etc/systemd/system/shutdownhook.service
+   dest: /etc/systemd/system/multi-user.target.wants/shutdownhook.service
+   state: link

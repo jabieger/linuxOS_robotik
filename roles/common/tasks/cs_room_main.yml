@@ -1,0 +1,11 @@
+- name: enable autologin
+  import_tasks: cs_room_enable_autologin.yml
+
+- name: remove syncdata
+  import_tasks: cs_room_remove_syncdata.yml
+
+- name: change password for default user - students know that
+  import_tasks: cs_room_setpassword.yml
+
+- name: configure veyon
+  import_tasks: cs_room_veyon.yml

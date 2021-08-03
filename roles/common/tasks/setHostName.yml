@@ -1,0 +1,7 @@
+
+
+# - name: set hostname which is stored in a database
+#   get_url:
+#     url: http://www.dachsberg.at/info/getHostname.php?macAddress={{ ansible_default_ipv4.macaddress }}
+#     dest: /etc/hostname
+#     mode: o=rw,g=r,o=r

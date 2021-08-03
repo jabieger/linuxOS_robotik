@@ -1,0 +1,9 @@
+- name: Remove syncdata.sh
+  ansible.builtin.file:
+    path: /usr/local/bin/syncdata.sh
+    state: absent
+
+- name: remove sync data from cron job
+  cron:
+    name: "sync data"
+    state: absent

@@ -1,0 +1,20 @@
+- name: Create file to enable per user templates
+  copy:
+    dest: /usr/lib/firefox/defaults/pref/autoconfig.js
+    content: |
+        //
+        pref("toolkit.policies.perUserDir",true);
+
+- file:
+    path: /run/user/1000/firefox/
+    state: directory
+
+
+- name: copy firefox policies.json template
+  ansible.builtin.template:
+    #src: /home/tom/ansible/roles/common/templates/policies.json.j2
+    src: policies.json.j2
+    dest: /run/user/1000/firefox/policies.json
+    owner: tom
+    group: tom
+    mode: '0644'

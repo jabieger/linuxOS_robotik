@@ -1,0 +1,20 @@
+- name: add an apt signing key for geogebra
+  apt_key:
+    url: http://www.geogebra.net/linux/office@geogebra.org.gpg.key
+    state: present
+
+- name: Add Geogebra repository
+  apt_repository:
+    repo: deb http://www.geogebra.net/linux/ stable main
+    filename: geogebra
+    state: present
+
+- name: Install geogebra5
+  apt:
+    name: geogebra5
+    update_cache: yes
+
+- name: Install geogebra classic
+  apt:
+    name: geogebra-classic
+    update_cache: yes

@@ -1,0 +1,56 @@
+#jinja2:variable_start_string:'[%', variable_end_string:'%]', trim_blocks: False
+{
+  "policies": {
+    "BlockAboutConfig": true,
+    "BlockAboutProfiles": true,
+    "DefaultDownloadDirectory": "${home}/Downloads",
+    "DisableFirefoxStudies": true,
+    "DisablePasswordReveal": true,
+    "DisableTelemetry": true,
+    "DisplayBookmarksToolbar": true,
+    "OverrideFirstRunPage": "[% firefox_start_page %]",
+    "DownloadDirectory": "${home}/Downloads",
+    "Homepage": {
+      "Additional": [
+        "https://www.dachsberg.at",
+        "https://www.ecosia.com"
+      ],
+      "StartPage": "homepage",
+      "URL": "[% firefox_start_page %]"
+    },
+    "Bookmarks": [
+    {% for item in bookmarks %}
+      {
+        "Placement": "toolbar",
+        "Title":"[% item.name %]",
+        "URL": "[% item.value %]"
+      },
+      {% endfor %}
+      {
+        "Placement": "toolbar",
+        "Title": "Second",
+        "URL": "https://linux-bildung.at"
+      }
+    ],
+    "NoDefaultBookmarks": true,
+    "OfferToSaveLogins": false,
+    "PasswordManagerEnabled": true,
+    "Preferences": {
+      "media.gmp-widevinecdm.enabled": true,
+      "browser.tabs.warnOnClose": false
+    },
+    "RequestedLocales": [
+      "de"
+    ],
+    "SanitizeOnShutdown": {
+      "Cache": true,
+      "Cookies": true,
+      "Downloads": true,
+      "FormData": true,
+      "History": true,
+      "OfflineApps": true,
+      "Sessions": true,
+      "SiteSettings": true
+    }
+  }
+}

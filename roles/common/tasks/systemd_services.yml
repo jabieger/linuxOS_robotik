@@ -1,0 +1,5 @@
+- name: Stop and disable cups-browsed.service
+  service:
+    name: cups-browsed.service
+    state: stopped
+    enabled: no

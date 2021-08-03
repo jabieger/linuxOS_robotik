@@ -1,0 +1,10 @@
+- hosts: EDV1
+  become: 'yes'
+  roles:
+    - software
+    - common
+  tasks:
+  - name: create user
+    include_role:
+      name: common
+      tasks_from: create_user.yml

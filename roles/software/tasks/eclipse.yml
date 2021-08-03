@@ -1,0 +1,2 @@
+- name: Install "eclipse" with option --classic
+  command: snap install eclipse --classic    

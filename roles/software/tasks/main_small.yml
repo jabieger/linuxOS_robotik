@@ -1,0 +1,10 @@
+- name: Make system apt update & upgrade
+  import_tasks: system_update.yml
+
+- name: install package needed for ansible
+  apt:
+    pkg: "python3-psutil"
+    state: present
+
+- name: Make some deb configs for software installation
+  import_tasks: set_deb_conf.yml

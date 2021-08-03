@@ -1,0 +1,11 @@
+- name: fix apparmor issues
+  file:
+    src: /etc/apparmor.d/{{ item }}
+    dest: /etc/apparmor.d/disable/{{ item }}
+    state: link
+  with_items:
+    - usr.bin.evince
+    - usr.lib.libreoffice.program.soffice.bin
+    - usr.lib.libreoffice.program.oosplash
+    - usr.lib.libreoffice.program.senddoc
+    - usr.lib.libreoffice.program.xpdfimport

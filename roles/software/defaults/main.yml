@@ -1,0 +1,85 @@
+main_software_packages:
+   - vim
+   - vokoscreen
+   - libreoffice-l10n-de
+   - libreoffice-common
+   - libreoffice-base
+   - libreoffice-help-de
+   - libreoffice-l10n-de
+   - libwriter2latex-java
+   - vlc
+   - wine-stable
+   - audacity
+   - gstreamer1.0-plugins-base
+   - gstreamer1.0-alsa
+   - gstreamer1.0-pulseaudio
+   - gstreamer1.0-plugins-good
+   - ttf-mscorefonts-installer
+   - filezilla
+   - cifs-utils
+   - libmp3lame0
+   - nautilus-image-converter
+   - nautilus-sendto
+   - xmaxima
+   - ubuntu-restricted-extras
+   - rar
+   - gimp
+   - chromium-browser
+   - openssh-server
+   - vlc-data
+   - language-pack-de-base
+   - language-pack-gnome-de
+   - firefox-locale-de
+   - vym
+   - vokoscreen
+   - pinta
+   - freeplane
+   - git
+   - exfat-fuse
+   - exfat-utils
+   - openjfx
+   - curl
+   - libdvdcss2
+   - rdesktop
+   - musescore3
+   - dia
+
+
+
+remove_software_packages:
+   - zeitgeist-core
+   - zeitgeist-datahub
+   - totem
+   - totem-plugins
+   - bluez
+   - bluez-obexd
+   - bluez-cups
+   - hunspell-de-ch-frami
+
+additional_software_packages_for_csr:
+   - inkscape
+   - filezilla
+   - kbruch
+   - kturtle
+   - krita
+   - bluefish
+   - jclic
+   - kalzium
+   - scribus
+   - inkscape
+   - eric
+   - netbeans
+   - abiword
+   - kalgebra
+   - wxmaxima
+   - vim-gtk3
+   - dkms
+   - fakeroot
+   - patch
+   - openshot
+   - gimp-gap
+   - idle-python3.8
+   - dia
+   - synfigstudio
+   - thonny
+   - veyon-service

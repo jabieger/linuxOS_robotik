@@ -1,0 +1,13 @@
+
+[Unit]
+Description=script that is executed on shutdown/reboot
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/usr/local/bin/cleanup-students.sh
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,4 @@
+# - name: Extract mozilla_klasse.tar - contains some firefox settings (do not save passwords). could be used instead of global/user plolicy
+#   ansible.builtin.unarchive:
+#     src: firefox.tar
+#     dest: /home/{{ non_admin_user }}/

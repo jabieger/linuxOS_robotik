@@ -1,0 +1,30 @@
+{
+   "RestoreOnStartupURLs":[
+      "www.dachsberg.at"
+   ],
+   "RestoreOnStartup":4,
+   "BookmarkBarEnabled":true,
+   "BlockThirdPartyCookies":true,
+
+   "ManagedBookmarks":[
+     {
+        "toplevel_name":"Verwaltete Lesezeichen"
+     },
+     {
+       "url":"https://www.baa.at",
+       "name":"Tippen"
+      },
+      {
+         "url":"https://at4.typewriter.at/",
+         "name":"Schreibtrainer"
+      },
+      {
+         "url":"https://dict.leo.org",
+         "name":"Dict"
+      },
+      {
+         "url":"https://www.eduvidual.at",
+         "name":"Moodle"
+      }
+   ]
+}

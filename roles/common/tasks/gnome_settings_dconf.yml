@@ -1,0 +1,63 @@
+  - name: Make sure python3-psutil is installed these settings
+    apt:
+      name: python3-psutil
+      state: present
+
+  - name: Test
+    block:
+    - name: set icons/applications
+      dconf:
+        key: /org/gnome/shell/favorite-apps
+        value: "['org.gnome.Nautilus.desktop','chromium-browser.desktop','firefox.desktop','libreoffice-writer.desktop','libreoffice-calc.desktop','vlc.desktop','geogebra-classic.desktop']"
+        state: present
+    - name: set icons/applications
+      dconf:
+        key: "/org/gnome/desktop/wm/preferences/button-layout"
+        value: "'close,maximize,minimize:'"
+        state: present
+
+    - name: change task switcher
+      dconf:
+        key: /org/gnome/desktop/wm/keybindings/switch-windows
+        value: "['<Alt>Tab']"
+        state: present
+
+    - name: change task switcher
+      dconf:
+        key: /org/gnome/desktop/wm/keybindings/switch-windows-backward
+        value: "['<Shift><Alt>Tab']"
+        state: present
+
+    - name: change task switcher
+      dconf:
+        key: /org/gnome/desktop/wm/keybindings/switch-applications
+        value: "['']"
+        state: present
+
+    - name: show clock and date
+      dconf:
+        key: /org/gnome/desktop/interface/clock-show-date
+        value: "true"
+        state: present
+
+
+    - name: change task switcher
+      dconf:
+        key: /org/gnome/desktop/wm/keybindings/switch-applications-backward
+        value: "['']"
+        state: present
+
+    - name: turn off screen saver
+      dconf:
+        key: /org/gnome/desktop/session/idle-delay
+        value: "0"
+        state: present
+
+    - name: turn off dim for power savings
+      dconf:
+        key: /org/gnome/settings-daemon/plugins/power/idle-dim
+        value: "false"
+        state: present
+
+    become: yes
+    become_user: "{{ non_admin_user }}"

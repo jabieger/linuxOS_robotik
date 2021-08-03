@@ -1,0 +1,21 @@
+- name: create firefox directory
+  file:
+    path: /etc/firefox/policies/
+    state: directory
+
+- name: Create file to enable per user templates
+  copy:
+    dest: /usr/lib/firefox/defaults/pref/autoconfig.js
+    content: |
+        //        
+        lockPref("trailhead.firstrun.branches", "nofirstrun-empty");
+        lockPref("browser.aboutwelcome.enabled", false);
+
+
+- name: copy firefox policies.json template
+  ansible.builtin.template:
+    src: policies.json.j2
+    dest: /etc/firefox/policies/policies.json
+    owner: root
+    group: root
+    mode: '0644'

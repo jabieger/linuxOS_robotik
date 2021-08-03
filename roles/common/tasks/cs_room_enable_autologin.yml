@@ -1,0 +1,13 @@
+- name: Setup automatic login for schueler
+  lineinfile:
+      line: AutomaticLogin={{ non_admin_user }}
+      path: /etc/gdm3/custom.conf
+      insertafter: '^\[daemon\]'
+      state: present
+
+- name: Enable automatic login
+  lineinfile:
+      line: "AutomaticLoginEnable=True"
+      path: /etc/gdm3/custom.conf
+      insertafter: '^AutomaticLogin={{ non_admin_user }}'
+      state: present

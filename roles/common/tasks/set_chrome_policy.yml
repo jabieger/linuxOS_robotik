@@ -1,0 +1,27 @@
+- name: check if chrome/chromium-browser is installed
+  ansible.builtin.package_facts:
+     manager: auto
+
+- name: set chromium-browser policy
+  copy:
+    src: chrome_policy.json
+    dest:  /var/snap/chromium/current/policies/managed/chrome_policies.json
+  when: '"chromium-browser" in ansible_facts.packages'
+
+- file:
+    path: /var/snap/chromium/current/policies/managed
+    state: directory
+
+- file:
+    path: /etc/opt/chrome/policies/managed/
+    state: directory
+
+#- name: Print the package facts
+#  ansible.builtin.debug:
+#    var: ansible_facts.packages
+
+- name: set google chrome policy
+  copy:
+    src: chrome_policy.json
+    dest:  /etc/opt/chrome/policies/managed/chrome_policies.json
+  when: '"google-chrome-stable" in ansible_facts.packages'

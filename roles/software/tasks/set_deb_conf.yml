@@ -1,0 +1,25 @@
+# - name: "loop through list from a variable"
+#   debug:
+#     msg: "An item: {{ item.name }} {{ item.question }}"
+#   with_items:
+#     - { name: libc6, question: libraries/restart-without-asking }
+#     - { name: "libc6:amd64", question: "libraries/restart-without-asking" }
+#     - { name: "libpam0g:amd64", question: "libraries/restart-without-asking" }
+#     - { name: "libssl1.1", question: "libraries/restart-without-asking" }
+#     - { name: "libc6", question: "libraries/restart-without-asking" }
+#     - { name: "ttf-mscorefonts-installer", question: "msttcorefonts/accepted-mscorefonts-eula" }
+
+
+- name: prepare eula for certain apps
+  debconf:
+    name: "{{ item.name }}"
+    question: "{{ item.question }}"
+    value: "True"
+    vtype: boolean
+  with_items:
+    - { name: libc6, question: libraries/restart-without-asking }
+    - { name: "libc6:amd64", question: "libraries/restart-without-asking" }
+    - { name: "libpam0g:amd64", question: "libraries/restart-without-asking" }
+    - { name: "libssl1.1", question: "libraries/restart-without-asking" }
+    - { name: "libc6", question: "libraries/restart-without-asking" }
+    - { name: "ttf-mscorefonts-installer", question: "msttcorefonts/accepted-mscorefonts-eula" }

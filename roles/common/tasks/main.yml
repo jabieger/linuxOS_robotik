@@ -1,0 +1,46 @@
+- name: Users
+  import_tasks: create_user.yml
+
+- name: recreate home
+  import_tasks: recreate_home.yml
+
+- name: set default apps
+  import_tasks: set_default_apps.yml
+
+- name: Remove files from autostart
+  import_tasks: remove_files_from_autostart.yml
+
+- name: Configure systemd services
+  import_tasks:  systemd_services.yml
+
+- name: Coyp files to /usr/local/bin
+  import_tasks: copy_usr_local_bin_files.yml
+
+- name: Create rsync task
+  import_tasks: create_rsync.yml
+
+- name: Change some gnome settings
+  import_tasks: gnome_settings_dconf.yml
+
+- name: set simple password store for google chrome
+  import_tasks:  set_chrome_password_store.yml
+
+- name: set firefox global policy
+  import_tasks:  set_firefox_global_policies.yml
+
+- name: fix apparmor issues
+  import_tasks: fix_apparmor_issues.yml
+
+- name: configure cron jobs
+  import_tasks: cronjob.yml  
+
+
+# - name: Copy and extract preconfigured tars
+#  import_tasks: copy_and_extract_preconfigured_tars.yml
+
+#- name: Set hostname
+#  import_tasks:  setHostName.yml
+
+- name: run computer science room config if necessary
+  import_tasks: cs_room_main.yml
+  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')

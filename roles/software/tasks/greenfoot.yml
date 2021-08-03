@@ -1,0 +1,8 @@
+- name: Gather package facts for apt
+  package_facts:
+    manager: apt
+
+- name: Install greenfoot 370 by downloading package from the internet
+  apt:
+     deb: https://www.greenfoot.org/download/files/Greenfoot-linux-370.deb
+  when: '"greenfoot" not in ansible_facts.packages'

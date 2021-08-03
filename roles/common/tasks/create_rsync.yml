@@ -1,0 +1,21 @@
+- name: setup rsync
+  copy:
+    src: syncdata.sh
+    dest: /usr/local/bin/syncdata.sh
+    group: root
+    owner: root
+    mode: u=rwx,g=rx,o=rx
+
+- name: create directory
+  file:
+    path: /data/local
+    group: "{{ non_admin_user }}"
+    owner: "{{ non_admin_user }}"
+    state: directory
+
+- name: Creating rsyncsecret
+  copy:
+    dest: "/etc/rsyncsecret"
+    content: |
+      "{{ rsyncPassword }}"
+    mode: u=rwx

@@ -1,0 +1,30 @@
+- name: create cron jobs
+  cron:
+    name: "sync time"
+    minute: "59"
+    hour: "8"
+    job: "/usr/sbin/ntpdate 0.at.pool.ntp.org >/dev/null"
+
+-  cron:
+    name: "shutdown 1"
+    minute: "20"
+    hour: "13"
+    job: "/usr/local/bin/shutdownquestion.sh"
+
+-  cron:
+    name: "shutdown 2"
+    minute: "20"
+    hour: "15"
+    job: "/usr/local/bin/shutdownquestion.sh"
+
+-  cron:
+    name: "shutdown 3"
+    minute: "20"
+    hour: "20"
+    job: "/usr/local/bin/shutdownquestion.sh"
+
+-  cron:
+    name: "sync data"
+    minute: "10"
+    hour: "8"
+    job: "/usr/local/bin/syncdata.sh"        

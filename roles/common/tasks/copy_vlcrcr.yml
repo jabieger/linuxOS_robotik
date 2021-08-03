@@ -1,0 +1,6 @@
+- name: copy vlcrcr to config - prevent user data collection
+  copy:
+      src: files/vlcrcr
+      dest: /home/{{ non_admin_user }}/.config/vlc
+      owner: "{{ non_admin_user }}"
+      mode: 600

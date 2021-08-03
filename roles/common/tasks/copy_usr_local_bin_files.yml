@@ -1,0 +1,27 @@
+- copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin/
+    owner: root
+    mode: 0755
+  with_fileglob:
+    - "*.sh"
+
+- name: replace "schueler" with default non_admin_user in shutdownhook-script
+  replace:
+      path: /usr/local/bin/shutdownquestion.sh
+      regexp: 'schueler'
+      replace: "{{ non_admin_user }}"
+
+- name: replace "schueler" with default non_admin_user in fixMount.sh
+  replace:
+      path: /usr/local/bin/fixMount.sh
+      regexp: 'schueler'
+      replace: "{{ non_admin_user }}"
+
+
+
+- name: replace "schueler" with default non_admin_user in cleanup-students.sh
+  replace:
+      path: /usr/local/bin/cleanup-students.sh
+      regexp: 'schueler'
+      replace: "{{ non_admin_user }}"

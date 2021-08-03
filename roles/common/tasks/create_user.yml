@@ -1,0 +1,28 @@
+
+- name: Add default user
+  user:
+   name: "{{ non_admin_user }}"
+   shell: /bin/bash
+   state: present
+   groups: cdrom
+
+- name: Change password for default user
+  user:
+    name: "{{ non_admin_user }}"
+    password: "{{ non_admin_password | password_hash('sha512') }}"
+    #password: $6$WLf3fjXWT1ee$YS4E.kL2EEFpogWMZcBrTT0hMkM2GgxW1nsBcpGf1OaNQbxx5GqZkWxDiy95U17oZ59HAuCkMh0OXkGXYgl0M1
+    state: present
+
+- name: create .config  dir for created user
+  file:
+    path: "/home/{{ non_admin_user }}/.config/"
+    state: directory
+    mode: "700"
+    owner: "{{ non_admin_user }}"
+    group: "{{ non_admin_user }}"
+
+- name: Stop initial setup dialog for created user
+  file:
+    path: "/home/{{ non_admin_user }}/.config/gnome-initial-setup-done"
+    state: touch
+    owner: "{{ non_admin_user }}"

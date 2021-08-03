@@ -1,0 +1,11 @@
+- name: secure sshd
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^AllowUsers'
+    line: "AllowUsers tom"
+
+- name: secure sshd
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: "PermitRootLogin no"

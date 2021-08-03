@@ -1,0 +1,8 @@
+- name: use apt proxy if present
+  import_tasks: set_apt_proxy.yml
+
+- name: Update packages
+  apt: update_cache=yes cache_valid_time=180
+
+- name: Upgrade system
+  apt: upgrade=full

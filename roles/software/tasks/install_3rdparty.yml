@@ -1,0 +1,18 @@
+- name: Install geogebra
+  import_tasks: geogebra.yml
+
+- name: Install greenfoot
+  import_tasks: greenfoot.yml
+  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+
+- name: Install eclipse
+  import_tasks: eclipse.yml
+  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+
+- name: Install vscodium - visual studio code without tracking
+  import_tasks: vscodium.yml
+  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+
+- name: Install Google Web Designer
+  import_tasks: google_web_designer.yml
+  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')

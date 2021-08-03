@@ -1,0 +1,15 @@
+- name: Remove files from autostart
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/xdg/autostart/gnome-welcome-tour.desktop
+    - /etc/xdg/autostart/org.gnome.DejaDup.Monitor.desktop
+    - /etc/xdg/autostart/spice-vdagent.desktop
+    #- /etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop
+    - /etc/xdg/autostart/update-notifier.desktop
+    #- /etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop
+    #- /etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop
+    #- /etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop
+    - /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
+    - /etc/xdg/autostart/gnome-keyring-secrets.desktop

@@ -1,0 +1,32 @@
+- name: Make system apt update & upgrade
+  import_tasks: system_update.yml
+
+- name: install package needed for ansible
+  apt:
+    pkg: "python3-psutil"
+    state: present
+
+- name: Make some deb configs for software installation
+  import_tasks: set_deb_conf.yml
+
+- name: install additional packages
+  apt:
+    pkg: "{{ main_software_packages }}"
+    state: present
+
+- name: Install 3rd party software
+  import_tasks: install_3rdparty.yml
+
+- name: remove not required packages
+  apt:
+    pkg: "{{ remove_software_packages }}"
+    state: absent
+    purge: yes
+
+### SECTION for computer science room
+
+- name: install additional packages for computer science room
+  apt:
+    pkg: "{{ additional_software_packages_for_csr }}"
+    state: present
+  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
