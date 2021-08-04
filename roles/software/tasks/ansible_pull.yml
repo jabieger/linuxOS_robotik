@@ -24,6 +24,6 @@
   cron:
     name: "ansible pull"
     special_time: "reboot"
-    job: "sleep 60 && ansible-pull -d /var/lib/ansible/local -U {{ ansible_pull_repo_url }} -i hosts >>/var/log/ansible-pull.log 2>&1"
+    job: "sleep 60 && ansible-pull --only-if-changed -d /var/lib/ansible/local -U {{ ansible_pull_repo_url }} -i hosts >>/var/log/ansible-pull.log 2>&1"
   when: ansible_pull_repo_url is defined
 # Cron job to git clone/pull a repo and then run locally
