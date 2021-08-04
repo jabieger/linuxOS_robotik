@@ -1,0 +1,27 @@
+- name: ensure /opt/karol directory exists
+  file:
+    path: /opt/karol/
+    state: directory
+
+- name: Download robot karol and extract
+  ansible.builtin.unarchive:
+    src: https://www.mebis.bayern.de/wp-content/uploads/sites/2/2019/10/RobotKarol30_other.zip
+    dest: /opt/karol/
+    remote_src: yes
+
+- name: Create png for icon
+  command: convert /opt/karol/Figuren/Figur/robot0.gif /opt/karol/Figuren/Figur/robot0.png
+
+- name: Create robot Karol .desktop file
+  copy:
+    dest: "/usr/share/applications/robotKarol.desktop"
+    content: |
+      [Desktop Entry]
+      Name=RobotKarol
+      Comment[de]=Robot Karol
+      Exec=java -jar /opt/karol/RobotKarol.jar
+      Icon=/opt/karol/Figuren/Figur/robot0.png
+      Terminal=false
+      Type=Application
+      Categories=Graphics;
+      StartupNotify=false
