@@ -14,6 +14,9 @@
     pkg: "{{ main_software_packages }}"
     state: present
 
+- name: install ansible-pull
+  import_tasks: ansible_pull.yml
+
 - name: Install 3rd party software
   import_tasks: install_3rdparty.yml
 

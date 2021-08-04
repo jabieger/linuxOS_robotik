@@ -1,0 +1,29 @@
+- name: install ansible package needed for ansible-pull
+  apt:
+    pkg: "ansible"
+    state: present
+  when: ansible_pull_repo_url is defined
+
+- name: Create logrotate entry for ansible-pull.log
+  copy:
+    dest: "/etc/logrotate.d/ansible-pull"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      /var/log/ansible-pull.log {
+       rotate 7
+       daily
+       compress
+       missingok
+       notifempty
+      }
+  when: ansible_pull_repo_url is defined
+
+- name: Create cron job for ansible-pull
+  cron:
+    name: "ansible pull"
+    special_time: "reboot"
+    job: "sleep 60 && ansible-pull -d /var/lib/ansible/local -U {{ ansible_pull_repo_url }} -i hosts >>/var/log/ansible-pull.log 2>&1"
+  when: ansible_pull_repo_url is defined
+# Cron job to git clone/pull a repo and then run locally
