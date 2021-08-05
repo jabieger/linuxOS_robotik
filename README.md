@@ -58,7 +58,12 @@ Ansible roles just have the purpose to structure your playbooks. This simplifies
 - **cslab**: 
   Contains all the extra stuff that is applied to the computers in our labs. Veyon, autologin, different user password
 
-Currently I am thinking of creating a 4th role, which will be used for ansible-pull. This still needs to be discussed.
+- **ansible-pull**:
+This role contains all the tasks that are executed using ansible-pull. In the global_vars you need to uncomment _ansible_pull_repo_url_. If that is the case the ansible_pull.yml available in the software role will make sure ansible-pull is installed on the clients and an apropriate cronjob is created. The cronjob will be executed on each reboot, which actually executes 
+`ansible-pull -U https://gitlab.com/osos_client/osos_ansible.git`
+This is an easy way if you need to upgrade your systems or install additional packages after a usual roll out. By the way it is easy to add conditions to your tasks, so that you can make sure tasks are only applied on the machines necessary.
+More info on ansible-pull can be found [here](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html) and there is also a greate video on it [here](https://www.youtube.com/watch?v=sn1HQq_GFNE)
+
 
 ### Packages
 Which packages are installed?
