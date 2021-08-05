@@ -32,7 +32,7 @@
   import_tasks: fix_apparmor_issues.yml
 
 - name: configure cron jobs
-  import_tasks: cronjob.yml  
+  import_tasks: cronjob.yml
 
 
 # - name: Copy and extract preconfigured tars
@@ -40,7 +40,3 @@
 
 #- name: Set hostname
 #  import_tasks:  setHostName.yml
-
-- name: run computer science room config if necessary
-  import_tasks: cs_room_main.yml
-  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')

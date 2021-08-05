@@ -3,7 +3,12 @@
   roles:
     - software
     - common
+
   tasks:
+    - name: include cslab role if necessary
+      include_role:
+        name: cslab
+      when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
 
   #- debug:
   #    var: inventory_hostname
@@ -12,8 +17,8 @@
 
   # - name: run computer science room config if necessary
   #   include_role:
-  #     name: common
-  #     tasks_from: cs_room_main.yml
+  #     name: cslab
+  #     tasks_from: main.yml
   #   when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
   #
   # - name: main

@@ -1,0 +1,14 @@
+- name: enable autologin
+  import_tasks: enable_autologin.yml
+
+- name: remove syncdata
+  import_tasks: remove_syncdata.yml
+
+- name: change password for default user - students know that
+  import_tasks: setpassword.yml
+
+- name: configure veyon
+  import_tasks: veyon.yml
+
+- name: install robotKarol
+  import_tasks: robotKarolJava.yml
