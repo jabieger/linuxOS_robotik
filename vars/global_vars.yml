@@ -10,6 +10,8 @@ non_admin_password_classroom: student01
 #ansible_pull_repo_url: https://gitlab.com/...
 
 firefox_start_page: https://linux-bildung.at|https://www.ecosia.org
+
+# these are bookmarks for firefox
 bookmarks:
     - name: eduvidual
       value: http://www.eduvidual.at

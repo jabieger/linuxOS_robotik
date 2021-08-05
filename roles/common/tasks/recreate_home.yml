@@ -1,6 +1,6 @@
 - name: create upperdir for overlay
   shell:
-    cmd: install -d -o {{ non_admin_user }} -g schueler /home/.{{ non_admin_user }}_rw
+    cmd: install -d -o {{ non_admin_user }} -g {{ non_admin_user }} /home/.{{ non_admin_user }}_rw
 
 - name: create working dir for overlay
   file:
