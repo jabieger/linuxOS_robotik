@@ -1,0 +1,10 @@
+- name: Update package cache
+  apt: update_cache=yes cache_valid_time=180
+
+#- name: Upgrade system
+#  apt: upgrade=full
+#  register: apt_result
+  # sometimes auto updates lock dpkg/apt; so we delay and retry
+#  retries: 5
+#  delay: 15
+#  until: apt_result is success

@@ -7,7 +7,7 @@ non_admin_password_classroom: student01
 #apt_proxy_url: http://192.168.1.1:3142/apt-cacher/
 
 #uncomment and adapt if you want to execute ansible-pull
-#ansible_pull_repo_url: https://gitlab.com/...
+#ansible_pull_repo_url: https://gitlab.com/osos_client/osos_ansible
 
 firefox_start_page: https://linux-bildung.at|https://www.ecosia.org
 

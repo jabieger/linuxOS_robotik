@@ -1,0 +1,16 @@
+- name: Make system apt update & upgrade
+  import_tasks: system_update.yml
+
+- name: install htop
+  apt:
+    pkg: htop
+    state: present
+  # Uncomment/Change the XXXX in the regex to install only on machines whose name starts with XXXX
+  #when: ansible_hostname | regex_search ("^XXXX(.*)", ignore_case=True)
+
+- name: install example application
+  copy:
+    src: ansible_test_app
+    dest: /tmp/
+    owner: root
+    group: root  

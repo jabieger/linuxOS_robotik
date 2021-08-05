@@ -1,0 +1,18 @@
+### used for ansible-pull only
+- hosts: localhost
+  gather_facts: yes
+
+  tasks:
+  - name: print ansible_hostname - just for demo
+    debug:
+      msg: "{{ ansible_hostname }}"
+
+  - name: print ansible_hostname if regex_search matches - just for demo
+    debug:
+      msg: "{{ ansible_hostname }}"
+    when: ansible_hostname | regex_search ("^PC(.*)", ignore_case=True)
+
+  - name: ansible-pull tasks
+    include_role:
+      name: ansible-pull
+      tasks_from: main.yml
