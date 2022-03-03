@@ -1,5 +1,5 @@
 [EDV1]
-192.168.0.17
+
 
 [EDV2]
 
@@ -7,8 +7,7 @@
 #192.168.0.44
 
 [KlassenPC]
-192.168.0.23
-192.168.0.44
+192.168.0.36
 
 [EDV:children]
 EDV1
@@ -21,5 +20,7 @@ KlassenPC
 
 [all:vars]
 ansible_connection=ssh
-ansible_user = admin
+ansible_user = tom
 ansible_python_interpreter=/usr/bin/python3
+ansible_sudo_pass=amd1800
+

@@ -1,21 +1,38 @@
 admin_user: admin
-non_admin_user: student
-non_admin_password: student
+ansible_ssh_pass: CHANGE
+non_admin_user: schueler
+non_admin_password: CHANGE
 non_admin_password_classroom: student01
 
 #uncomment and adapt if you have want to use an apt-proxy
 #apt_proxy_url: http://192.168.1.1:3142/apt-cacher/
 
 #uncomment and adapt if you want to execute ansible-pull
-#ansible_pull_repo_url: https://gitlab.com/osos_client/osos_ansible.git
+ansible_pull_repo_url: https://gitlab.com/osos_client/osos_ansible.git
 
 firefox_start_page: https://linux-bildung.at|https://www.ecosia.org
 
+rsyncServerURL: classsync@10.50.16.251::class
+
 # these are bookmarks for firefox
 bookmarks:
-    - name: eduvidual
-      value: http://www.eduvidual.at
-    - name: digitalcourage
-      value: http://digitalcourage.de
-    - name: ORF
-      value: http://www.orf.at
+    - name: Google Maps
+      value: https://maps.google.com
+    - name: Duden
+      value: https://www.duden.de/woerterbuch
+    - name: Youtube
+      value: https://www.youtube.com
+    - name: Google Maps
+      value: https://maps.google.com
+    - name: Moodle
+      value: https://www.gymdb.at/moodle30/
+    - name: Leo
+      value: https://dict.leo.org/englisch-deutsch/
+    - name: Cambridge Dict.
+      value: https://dictionary.cambridge.org/de
+    - name: DeepL
+      value: https://www.deepl.com/translator/
+    - name: Wikipedia
+      value: https://wikipedia.de
+    - name: Ecosia
+      value: https://www.ecosia.de

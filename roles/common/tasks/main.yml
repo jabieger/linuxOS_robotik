@@ -10,10 +10,13 @@
 - name: Remove files from autostart
   import_tasks: remove_files_from_autostart.yml
 
+- name: Add autostart for user
+  import_tasks: autostart.yml
+
 - name: Configure systemd services
   import_tasks:  systemd_services.yml
 
-- name: Coyp files to /usr/local/bin
+- name: Copy files to /usr/local/bin
   import_tasks: copy_usr_local_bin_files.yml
 
 - name: Create rsync task

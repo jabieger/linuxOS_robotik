@@ -16,5 +16,8 @@
 
 - name: Install geogebra classic
   apt:
-    name: geogebra-classic
-    update_cache: yes
+    deb: "https://www.geogebra.org/download/deb.php?arch=amd64&ver=6"
+      #- name: Install geogebra classic
+      #apt:
+      #name: geogebra-classic
+      #update_cache: yes

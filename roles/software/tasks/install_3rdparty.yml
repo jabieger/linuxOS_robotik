@@ -5,9 +5,9 @@
   import_tasks: greenfoot.yml
   when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
 
-- name: Install eclipse
-  import_tasks: eclipse.yml
-  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+#- name: Install eclipse
+#  import_tasks: eclipse.yml
+#  when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
 
 - name: Install vscodium - visual studio code without tracking
   import_tasks: vscodium.yml

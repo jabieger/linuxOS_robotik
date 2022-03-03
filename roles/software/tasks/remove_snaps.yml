@@ -1,0 +1,28 @@
+- name: Gather package facts for apt
+  package_facts:
+    manager: apt
+
+- name: Remove snaps
+  shell:
+    cmd: snap list {{ item }} && snap remove --purge  {{ item }}
+  with_items:
+    - chromium
+    - eclipse
+    - gnome-3-38-2004
+    - firefox
+  ignore_errors: yes
+  when: '"snapd" in ansible_facts.packages'
+
+- name: cleanup snap
+  shell:
+    cmd:  apt remove --purge -y snapd gnome-software-plugin-snap
+
+- name: remove chromium-codecs-ffmpeg-extra
+  apt:
+    pkg: chromium-codecs-ffmpeg-extra
+    state: absent
+
+
+- name: install chrome from deb
+  apt:
+    deb: "http://packages.linuxmint.com/pool/upstream/c/chromium/chromium_98.0.4758.102~linuxmint1+una_amd64.deb"

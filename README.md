@@ -6,7 +6,7 @@ Ansible files to set up a standard Ubuntu client.
 
 **Prerequisites:** 
 
- - Ubuntu 20.04 with openssh-server installed and accessible from remote.
+ - Ubuntu 22.04 with openssh-server installed and accessible from remote.
 
 
 Download and extract or clone repository.

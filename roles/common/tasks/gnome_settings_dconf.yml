@@ -8,7 +8,7 @@
     - name: set icons/applications
       dconf:
         key: /org/gnome/shell/favorite-apps
-        value: "['org.gnome.Nautilus.desktop','chromium-browser.desktop','firefox.desktop','libreoffice-writer.desktop','libreoffice-calc.desktop','vlc.desktop','geogebra-classic.desktop']"
+        value: "['org.gnome.Nautilus.desktop','firefox.desktop','chromium-browser.desktop','libreoffice-writer.desktop','libreoffice-calc.desktop','vlc.desktop','geogebra-classic.desktop']"
         state: present
     - name: set icons/applications
       dconf:
@@ -57,6 +57,48 @@
       dconf:
         key: /org/gnome/settings-daemon/plugins/power/idle-dim
         value: "false"
+        state: present
+
+    - name: move task bar to bottom
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/dock-position
+        value: "'BOTTOM'"
+        state: present
+
+    - name: hide task bar
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/autohide
+        value: "true"
+        state: present
+
+    - name: hide task bar
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/dock-fixed
+        value: "false"
+        state: present
+
+    - name: hide trash-can
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/show-trash
+        value: "false"
+        state: present
+
+    - name: minimize on icon click
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/click-action
+        value: "'minimize'"
+        state: present
+
+    - name: resize dock to small
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/extend-height
+        value: "false"
+        state: present
+
+    - name: resize dock to small
+      dconf:
+        key: /org/gnome/desktop/interface/gtk-theme
+        value: "'Yaru-dark'"
         state: present
 
     become: yes

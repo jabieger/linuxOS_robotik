@@ -1,0 +1,45 @@
+- hosts: TOTALINVENTORY
+  become: 'yes'
+  roles:
+#    - software
+#    - common
+
+  tasks:
+#    - name: include cslab role if necessary
+#      include_role:
+#        name: cslab
+#      when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+
+    - name: Remove files from autostart
+      import_tasks: autostart.yml
+
+  #- debug:
+  #    var: inventory_hostname
+  #  when:
+  #    - inventory_hostname in groups.EDV1
+
+  # - name: run computer science room config if necessary
+  #   include_role:
+  #     name: cslab
+  #     tasks_from: main.yml
+  #   when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+  #
+  # - name: main
+  #   include_role:
+  #     name: common
+  #     tasks_from: main.yml
+  #
+  # - name: autologin
+  #   include_role:
+  #     name: common
+  #     tasks_from: cs_room_enable_autologin.yml
+  #
+  # - name: syncdata
+  #   include_role:
+  #     name: common
+  #     tasks_from: cs_room_remove_syncdata.yml
+  #
+  # - name: set cs_room_setpassword
+  #   include_role:
+  #     name: common
+  #     tasks_from: cs_room_setpassword.yml

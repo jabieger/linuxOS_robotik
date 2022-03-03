@@ -26,6 +26,9 @@
     state: absent
     purge: yes
 
+- name: remove snaps
+  import_tasks: remove_snaps.yml
+
 ### SECTION for computer science room
 
 - name: install additional packages for computer science room

@@ -24,7 +24,6 @@ main_software_packages:
    - ubuntu-restricted-extras
    - rar
    - gimp
-   - chromium-browser
    - openssh-server
    - vlc-data
    - language-pack-de-base
@@ -54,6 +53,11 @@ remove_software_packages:
    - bluez
    - bluez-obexd
    - bluez-cups
+   - gnome-mahjongg 
+   - gnome-mines
+   - gnome-sudoku
+   - gnome-aisleriot
+   - gnome-online-accounts   
    - hunspell-de-ch-frami
 
 additional_software_packages_for_csr:
@@ -68,7 +72,7 @@ additional_software_packages_for_csr:
    - scribus
    - inkscape
    - eric
-   - netbeans
+     #- netbeans
    - abiword
    - kalgebra
    - wxmaxima
@@ -76,9 +80,9 @@ additional_software_packages_for_csr:
    - dkms
    - fakeroot
    - patch
-   - openshot
+     #- openshot
    - gimp-gap
-   - idle-python3.8
+   - idle-python3.10
    - dia
    - synfigstudio
    - thonny

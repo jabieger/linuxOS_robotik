@@ -19,3 +19,9 @@
     content: |
       "{{ rsyncPassword }}"
     mode: u=rwx
+
+- name: setup rsync
+  copy:
+    dest: "/usr/local/bin/syncdata.sh"
+    content: |
+      rsync -av --delete --password-file=/etc/rsyncsecret {{ rsyncServerURL }} /data/local      
