@@ -1,0 +1,25 @@
+[EDV1]
+192.168.0.17
+
+[EDV2]
+
+[EDV3]
+#192.168.0.44
+
+[KlassenPC]
+192.168.0.23
+192.168.0.44
+
+[EDV:children]
+EDV1
+EDV2
+EDV3
+
+[TOTALINVENTORY:children]
+EDV
+KlassenPC
+
+[all:vars]
+ansible_connection=ssh
+ansible_user = admin
+ansible_python_interpreter=/usr/bin/python3
