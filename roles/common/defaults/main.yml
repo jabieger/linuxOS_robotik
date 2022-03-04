@@ -1,7 +1,0 @@
-rsyncPassword: myPassword
-firefox_start_page: https://www.redhat.at
-bookmarks:
-    - name: url1
-      value: http://oe1.orf.at
-    - name: url2
-      value: http://www.nachrichten.at

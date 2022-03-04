@@ -8,11 +8,14 @@ non_admin_password_classroom: student01
 #apt_proxy_url: http://192.168.1.1:3142/apt-cacher/
 
 #uncomment and adapt if you want to execute ansible-pull
-ansible_pull_repo_url: https://gitlab.com/osos_client/osos_ansible.git
+#ansible_pull_repo_url: https://gitlab.com/osos_client/osos_ansible.git
+
+#uncomment if you have an rsync server folder to regularly sync to the clients
+#helps to distribute files from a central point
+#rsyncServerURL: RSYNCUSER@SERVER::class
+#rsyncPassword: myPassword
 
 firefox_start_page: https://linux-bildung.at|https://www.ecosia.org
-
-rsyncServerURL: classsync@10.50.16.251::class
 
 # these are bookmarks for firefox
 bookmarks:
