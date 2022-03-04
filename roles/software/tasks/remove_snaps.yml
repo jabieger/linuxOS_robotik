@@ -6,8 +6,6 @@
   shell:
     cmd: snap list {{ item }} && snap remove --purge  {{ item }}
   with_items:
-    - chromium
-    - eclipse
     - gnome-3-38-2004
     - firefox
   ignore_errors: yes
