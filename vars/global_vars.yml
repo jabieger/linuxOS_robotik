@@ -1,5 +1,4 @@
 admin_user: admin
-ansible_ssh_pass: CHANGE
 non_admin_user: schueler
 non_admin_password: CHANGE
 non_admin_password_classroom: student01
