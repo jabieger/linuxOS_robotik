@@ -4,11 +4,18 @@ non_admin_user: schueler
 non_admin_password: CHANGE
 non_admin_password_classroom: student01
 
+## NOT RECOMMENDED BUT POSSIBLE - AT LEAST MAKE SURE YOU DO NOT CHECK THIS FILE IN
+# For SSH-login
+#ansible_password: CHANGE
+# sudo password
+#ansible_become_pass: CHANGE
+
 #uncomment and adapt if you have want to use an apt-proxy
 #apt_proxy_url: http://192.168.1.1:3142/apt-cacher/
 
 #uncomment and adapt if you want to execute ansible-pull
-#ansible_pull_repo_url: https://gitlab.com/osos_client/osos_ansible.git
+# make sure you use your own repository.
+#ansible_pull_repo_url: https://gitlab.com/MYPROJECT
 
 #uncomment if you have an rsync server folder to regularly sync to the clients
 #helps to distribute files from a central point

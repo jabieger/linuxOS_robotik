@@ -19,9 +19,11 @@
     content: |
       "{{ rsyncPassword }}"
     mode: u=rwx
+  when: rsyncPassword is defined
 
 - name: setup rsync
   copy:
     dest: "/usr/local/bin/syncdata.sh"
     content: |
-      rsync -av --delete --password-file=/etc/rsyncsecret {{ rsyncServerURL }} /data/local      
+      rsync -av --delete --password-file=/etc/rsyncsecret {{ rsyncServerURL }} /data/local
+  when: rsyncServerURL is defined

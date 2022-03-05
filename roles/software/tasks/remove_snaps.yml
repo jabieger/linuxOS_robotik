@@ -20,7 +20,14 @@
     pkg: chromium-codecs-ffmpeg-extra
     state: absent
 
-
+- name: get latest chromium package url
+  shell: echo "http://packages.linuxmint.com/"$(wget -q -O- "http://packages.linuxmint.com/search.php?release=una&section=any&keyword=chromium" | grep "<b>chromium</b>" -A 4 |grep href |cut -d '"' -f2)
+  register: chromium_url
+  
+- name: Print chromium URL/Version
+  debug: 
+    msg: "Installing chromium from: {{ chromium_url.stdout }}"
+  
 - name: install chrome from deb
   apt:
-    deb: "http://packages.linuxmint.com/pool/upstream/c/chromium/chromium_98.0.4758.102~linuxmint1+una_amd64.deb"
+    deb: "{{ chromium_url.stdout }}"
