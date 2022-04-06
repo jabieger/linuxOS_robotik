@@ -2,7 +2,8 @@
   apt_key:
     url: http://www.geogebra.net/linux/office@geogebra.org.gpg.key
     state: present
-
+    keyring: /etc/apt/trusted.gpg.d/geogebra.gpg
+ 
 - name: Add Geogebra repository
   apt_repository:
     repo: deb http://www.geogebra.net/linux/ stable main

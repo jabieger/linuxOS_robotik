@@ -8,6 +8,9 @@
   with_items:
     - gnome-3-38-2004
     - firefox
+    - snap-store
+    - gtk-common-themes
+    - snapd-desktop-integration    
   ignore_errors: yes
   when: '"snapd" in ansible_facts.packages'
 
@@ -31,3 +34,36 @@
 - name: install chrome from deb
   apt:
     deb: "{{ chromium_url.stdout }}"
+
+- name: make sure firefox is installed as .deb and not as snap
+  copy:
+      dest: "/etc/apt/preferences.d/99mozilla_teamppa"
+      mode: '0644'
+      content: |
+        Package: firefox*
+        Pin: release o=LP-PPA-mozillateam
+        Pin-Priority: 501
+
+        Package: firefox*
+        Pin: release o=Ubuntu
+        Pin-Priority: -1
+
+- name: import apt key for mozilla team ppa
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 9BDB3D89CE49EC21
+    keyring: /etc/apt/trusted.gpg.d/mozillateam.gpg
+
+- name: Add mozilla team ppa 
+  apt_repository:
+    repo: deb https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu jammy main 
+    state: present
+    filename: firefox_team_ppa.list
+
+- name: Make system apt update & upgrade
+  import_tasks: system_update.yml
+
+- name:
+  apt:
+    pkg: ['firefox', 'firefox-locale-de']
+    state: present
