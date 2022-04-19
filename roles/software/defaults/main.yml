@@ -28,14 +28,14 @@ main_software_packages:
    - vlc-data
    - language-pack-de-base
    - language-pack-gnome-de
-   - firefox-locale-de
+   #- firefox-locale-de
    - vym
    - vokoscreen
    - pinta
    - freeplane
    - git
    - exfat-fuse
-   - exfat-utils
+   #- exfat-utils
    - openjfx
    - curl
    - libdvdcss2
