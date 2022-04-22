@@ -1,0 +1,29 @@
+- name: remove audacity.deb
+  apt:
+      pkg: audacity
+      state: absent
+
+- name: download audicity Icon
+  get_url:
+      url: https://github.com/audacity/audacity/raw/master/images/AudacityLogo.png
+      dest: /usr/local/bin/audacity.png
+
+- name: download audacity.AppImage
+  get_url:
+    url: https://github.com/audacity/audacity/releases/download/Audacity-3.1.3/audacity-linux-3.1.3-x86_64.AppImage
+    dest: /usr/local/bin/audacity.AppImage
+    mode: 0755
+    
+- name: Create audacity .desktop file
+  copy:
+    dest: "/usr/share/applications/audacity.desktop"
+    content: |
+      [Desktop Entry]
+      Encoding=UTF-8
+      Name=Audacity
+      Comment=Audacity for Desktop
+      Exec=/usr/local/bin/audacity.AppImage
+      Icon=/usr/local/bin/audacity.png
+      StartupWMClass=Audacity
+      Type=Application
+      Categories=Audio;
