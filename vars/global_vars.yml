@@ -22,6 +22,7 @@ non_admin_password_classroom: student01
 #rsyncPassword: myPassword
 
 firefox_start_page: https://linux-bildung.at|https://www.ecosia.org
+firefox_additional_start_page: https://www.ecosia.org
 
 # these are bookmarks for firefox
 bookmarks:

@@ -8,15 +8,13 @@
     "DisablePasswordReveal": true,
     "DisableTelemetry": true,
     "DisplayBookmarksToolbar": true,
-    "OverrideFirstRunPage": "[% firefox_start_page %]",
+    "OverrideFirstRunPage": "[% firefox_start_page %]|[% firefox_additional_start_page %]",
     "DownloadDirectory": "${home}/Downloads",
     "Homepage": {
-      "Additional": [
-        "https://www.dachsberg.at",
-        "https://www.ecosia.com"
-      ],
-      "StartPage": "homepage",
-      "URL": "[% firefox_start_page %]"
+      "URL": "[% firefox_start_page %]",
+      "Locked": true,
+      "StartPage": "homepage-locked",
+      "Additional": ["[% firefox_additional_start_page %]"]
     },
     "Bookmarks": [
     {% for item in bookmarks %}
