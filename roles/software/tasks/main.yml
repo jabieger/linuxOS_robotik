@@ -20,6 +20,9 @@
 - name: Install 3rd party software
   import_tasks: install_3rdparty.yml
 
+- name: Install latest audacity
+  import_tasks: audacity.yml
+
 - name: remove not required packages
   apt:
     pkg: "{{ remove_software_packages }}"
