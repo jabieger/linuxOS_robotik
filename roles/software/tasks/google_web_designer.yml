@@ -1,3 +1,8 @@
 - name: Install Google Web Designer
   apt: 
     deb: https://dl.google.com/linux/direct/google-webdesigner_current_amd64.deb
+
+- name: Download the Google repository signing key
+  get_url:
+      url: https://dl.google.com/linux/linux_signing_key.pub
+      dest: /etc/apt/trusted.gpg.d/google.pub

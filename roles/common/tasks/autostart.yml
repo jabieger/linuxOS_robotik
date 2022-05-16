@@ -23,8 +23,53 @@
 - name: executable for autostart file
   copy:
     dest: "/usr/local/bin/runAfterLogin.sh"
-    content: |#!/bin/bash
+    content: |
+      #!/bin/bash
       sleep 3
       # clone screen
       # set default audio
     mode: 0755
+
+-  cron:
+    name: "start after reboot"
+    special_time: reboot
+    job: "/usr/local/bin/autoexec.sh"
+
+
+- name: create autoexec script
+  copy:
+      dest: "/usr/local/bin/autoexec.sh"
+      mode: '0755'
+      content: |
+        #!/bin/bash
+        sleep 7
+        /usr/local/bin/runOnce.sh
+
+- name: create runOnce script
+  copy:
+      dest: "/usr/local/bin/runOnce.sh"
+      mode: '0755'
+      content: |
+        #!/bin/bash
+        /usr/local/bin/fogScript.sh
+        systemctl enable laus.service
+
+- name: create laus service
+  copy:
+      dest: "/etc/systemd/system/laus.service"
+      mode: '0755'
+      content: | 
+        [Unit]
+        Description=Run script after network is available
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        Type=simple
+        RemainAfterExit=false
+        ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 2; done;'
+        ExecStart=/usr/local/bin/laus-server.sh
+        TimeoutStartSec=0
+
+        [Install]
+        WantedBy=default.target    
