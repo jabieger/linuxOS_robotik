@@ -35,3 +35,9 @@
       name: check_veyon.sh
       minute: "*/2"
       job: /usr/local/bin/check_veyon.sh
+
+- name: import apt key for veyon team ppa
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 4B776B9B1C1938F18C023C8C49ABD150D5D0DCC6
+    keyring: /etc/apt/trusted.gpg.d/veyon.gpg

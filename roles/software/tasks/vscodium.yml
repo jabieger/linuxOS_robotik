@@ -16,3 +16,8 @@
   apt:
     name: codium
     update_cache: yes
+
+- name: add apt key
+  shell:
+    cmd: "wget --inet4-only -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodum-archive-keyring.gpg"
+
