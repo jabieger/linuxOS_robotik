@@ -101,5 +101,18 @@
         value: "'Yaru-dark'"
         state: present
 
+    - name: set default font size in gedit
+      dconf:
+        key: /org/gnome/gedit/preferences/editor/editor-font
+        value: "'Monospace 22'"
+        state: present
+
+    - name: set default color scheme in gedit
+      dconf:
+        key: org/gnome/gedit/preferences/editor/scheme
+        value: "'cobalt'"
+        state: present
+
+
     become: yes
     become_user: "{{ non_admin_user }}"
