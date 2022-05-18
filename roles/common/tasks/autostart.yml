@@ -23,8 +23,33 @@
 - name: executable for autostart file
   copy:
     dest: "/usr/local/bin/runAfterLogin.sh"
-    content: |#!/bin/bash
+    content: |
+      #!/bin/bash
       sleep 3
       # clone screen
       # set default audio
     mode: 0755
+
+-  cron:
+    name: "start after reboot"
+    special_time: reboot
+    job: "/usr/local/bin/autoexec.sh"
+
+
+- name: create autoexec script
+  copy:
+      dest: "/usr/local/bin/autoexec.sh"
+      mode: '0755'
+      content: |
+        #!/bin/bash
+        sleep 7
+        /usr/local/bin/runOnce.sh
+
+- name: create runOnce script
+  copy:
+      dest: "/usr/local/bin/runOnce.sh"
+      mode: '0755'
+      content: |
+        #!/bin/bash
+        
+        mv /usr/local/bin/runOnce.sh /usr/local/bin/runOnce.sh.Old 
