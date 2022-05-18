@@ -10,13 +10,13 @@
 
 - name: create Veyon.conf directory
   file:
-    path: /etc/xdg/Veyon\ Solutions/
+    path: /etc/xdg/Veyon Solutions/
     state: directory
 
 - name: copy veyon conf
   copy:
     src: files/Veyon.conf
-    dest: /etc/xdg/Veyon\ Solutions/Veyon.conf
+    dest: /etc/xdg/Veyon Solutions/Veyon.conf
 
 - name: create script that checks if veyon is running
   copy:
@@ -41,3 +41,10 @@
     keyserver: keyserver.ubuntu.com
     id: 4B776B9B1C1938F18C023C8C49ABD150D5D0DCC6
     keyring: /etc/apt/trusted.gpg.d/veyon.gpg
+
+- name: Enable X11 as veyon does not support wayland yet
+  lineinfile:
+      line: "WaylandEnable=False"
+      path: /etc/gdm3/custom.conf
+      insertafter: '^AutomaticLoginEnable=True'
+      state: present

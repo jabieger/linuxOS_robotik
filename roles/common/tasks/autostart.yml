@@ -51,25 +51,5 @@
       mode: '0755'
       content: |
         #!/bin/bash
-        /usr/local/bin/fogScript.sh
-        systemctl enable laus.service
-
-- name: create laus service
-  copy:
-      dest: "/etc/systemd/system/laus.service"
-      mode: '0755'
-      content: | 
-        [Unit]
-        Description=Run script after network is available
-        After=network-online.target
-        Wants=network-online.target
-
-        [Service]
-        Type=simple
-        RemainAfterExit=false
-        ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 2; done;'
-        ExecStart=/usr/local/bin/laus-server.sh
-        TimeoutStartSec=0
-
-        [Install]
-        WantedBy=default.target    
+        
+        mv /usr/local/bin/runOnce.sh /usr/local/bin/runOnce.sh.Old 
