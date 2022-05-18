@@ -10,13 +10,13 @@
 
 - name: create Veyon.conf directory
   file:
-    path: /etc/xdg/Veyon\ Solutions/
+    path: /etc/xdg/Veyon Solutions/
     state: directory
 
 - name: copy veyon conf
   copy:
     src: files/Veyon.conf
-    dest: /etc/xdg/Veyon\ Solutions/Veyon.conf
+    dest: /etc/xdg/Veyon Solutions/Veyon.conf
 
 - name: create script that checks if veyon is running
   copy:
