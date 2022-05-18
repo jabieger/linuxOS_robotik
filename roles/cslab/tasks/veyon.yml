@@ -41,3 +41,10 @@
     keyserver: keyserver.ubuntu.com
     id: 4B776B9B1C1938F18C023C8C49ABD150D5D0DCC6
     keyring: /etc/apt/trusted.gpg.d/veyon.gpg
+
+- name: Enable X11 as veyon does not support wayland yet
+  lineinfile:
+      line: "WaylandEnable=False"
+      path: /etc/gdm3/custom.conf
+      insertafter: '^AutomaticLoginEnable=True'
+      state: present
