@@ -10,7 +10,7 @@
     - firefox
     - snap-store
     - gtk-common-themes
-    - snapd-desktop-integration    
+    - snapd-desktop-integration
   ignore_errors: yes
   when: '"snapd" in ansible_facts.packages'
 
@@ -26,11 +26,11 @@
 - name: get latest chromium package url
   shell: echo "http://packages.linuxmint.com/"$(wget -q -O- "http://packages.linuxmint.com/search.php?release=una&section=any&keyword=chromium" | grep "<b>chromium</b>" -A 4 |grep href |cut -d '"' -f2)
   register: chromium_url
-  
+
 - name: Print chromium URL/Version
-  debug: 
+  debug:
     msg: "Installing chromium from: {{ chromium_url.stdout }}"
-  
+
 - name: install chrome from deb
   apt:
     deb: "{{ chromium_url.stdout }}"
@@ -63,9 +63,9 @@
     id: 9BDB3D89CE49EC21
     keyring: /etc/apt/trusted.gpg.d/mozillateam.gpg
 
-- name: Add mozilla team ppa 
+- name: Add mozilla team ppa
   apt_repository:
-    repo: deb https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu jammy main 
+    repo: deb https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu jammy main
     state: present
     filename: firefox_team_ppa.list
 

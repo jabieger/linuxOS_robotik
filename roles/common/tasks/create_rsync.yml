@@ -35,9 +35,11 @@
     owner: "{{ non_admin_user }}"
     mode: '0755'
     state: directory
+  when: inventory_hostname in groups["KlassenPC"]
 
 - name: create symbolic link to sync folder
   file:
-   src: "/data/local/"
-   dest: "/home/{{ non_admin_user }}/Schreibtisch/unterricht"
-   state: link
+    src: "/data/local/"
+    dest: "/home/{{ non_admin_user }}/Schreibtisch/unterricht"
+    state: link
+  when: inventory_hostname in groups["KlassenPC"]

@@ -1,0 +1,12 @@
+# overrides runAfterLogin.sh from common role
+# for some reason veyon-server is currently not startet by veyon-service
+- name: executable for autostart file 
+  copy:
+    dest: "/usr/local/bin/runAfterLogin.sh"
+    content: |
+      #!/bin/bash
+      sleep 3
+      # clone screen
+      # set default audio
+      /usr/bin/veyon-server
+    mode: 0755

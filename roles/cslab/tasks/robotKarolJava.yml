@@ -3,6 +3,16 @@
     path: /opt/karol/
     state: directory
 
+- name: create RobotKarol3 directory in ~
+  file:
+    path: /home/{{ non_admin_user }}/RobotKarol3
+    state: directory
+
+- name: copy karol.prop - for dark mode
+  copy:
+    src: files/karol.prop
+    dest: /home/{{ non_admin_user }}/RobotKarol3/karol.prop
+
 - name: Download robot karol and extract
   ansible.builtin.unarchive:
     src: https://www.mebis.bayern.de/wp-content/uploads/sites/2/2019/10/RobotKarol30_other.zip

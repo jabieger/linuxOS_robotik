@@ -1,0 +1,25 @@
+#Einstellungen RobotKarol Version3.0
+#Mon May 30 11:12:10 CEST 2022
+Editor.FontSize=18
+Editor.ColorKarol=ffff8c00
+Karol.MaxJump=1
+Karol.BrickControl=false
+Editor.LineNumbers=true
+Program.RestoreWorld=false
+Program.ScrollOnStep=false
+Editor.ColorComment=ff6d6d6d
+Editor.ColorNum=ffff0000
+Editor.ColorParam=ffc00000
+Karol.MaxBrick=0
+Karol.Delay=100
+Editor.ColorKeyWord=ff00ffff
+Version=3.0
+Editor.ColorIdent=ff00ff00
+Editor.TabLen=2
+Editor.FormatToken=true
+Program.FixProperties=false
+Program.StopOnError=true
+Program.OpenPath=/home/schueler
+Program.HintOnError=false
+Karol.BrickStart=0
+Editor.ColorAnwBed=ffffffff

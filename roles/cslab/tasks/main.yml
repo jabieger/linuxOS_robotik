@@ -12,3 +12,6 @@
 
 - name: install robotKarol
   import_tasks: robotKarolJava.yml
+
+- name: override runAfterLogin.sh
+  import_tasks: autostart.yml
