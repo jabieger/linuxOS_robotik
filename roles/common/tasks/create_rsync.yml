@@ -17,8 +17,8 @@
   copy:
     dest: "/etc/rsyncsecret"
     content: |
-      "{{ rsyncPassword }}"
-    mode: u=rwx
+      {{ rsyncPassword }}
+    mode: '0600'
   when: rsyncPassword is defined
 
 - name: setup rsync
@@ -27,3 +27,17 @@
     content: |
       rsync -av --delete --password-file=/etc/rsyncsecret {{ rsyncServerURL }} /data/local
   when: rsyncServerURL is defined
+
+- name: create directory
+  file:
+    path: /home/{{ non_admin_user }}/Schreibtisch
+    group: "{{ non_admin_user }}"
+    owner: "{{ non_admin_user }}"
+    mode: '0755'
+    state: directory
+
+- name: create symbolic link to sync folder
+  file:
+   src: "/data/local/"
+   dest: "/home/{{ non_admin_user }}/Schreibtisch/unterricht"
+   state: link

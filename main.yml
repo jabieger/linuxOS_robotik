@@ -10,6 +10,11 @@
         name: cslab
       when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
 
+    - name: Remove apt-cache folder for imaging 
+      file:
+        state: absent
+        path: /var/cache/apt/
+
   #- debug:
   #    var: inventory_hostname
   #  when:

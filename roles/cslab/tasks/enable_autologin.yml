@@ -11,3 +11,10 @@
       path: /etc/gdm3/custom.conf
       insertafter: '^AutomaticLogin={{ non_admin_user }}'
       state: present
+
+- name: Enable X11 as veyon does not support wayland yet
+  lineinfile:
+      line: "WaylandEnable=False"
+      path: /etc/gdm3/custom.conf
+      insertafter: '^AutomaticLoginEnable=True'
+      state: present

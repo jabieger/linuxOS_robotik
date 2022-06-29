@@ -27,6 +27,7 @@
       #!/bin/bash
       sleep 3
       # clone screen
+      /usr/local/bin/cloneScreen.sh
       # set default audio
     mode: 0755
 
@@ -51,5 +52,63 @@
       mode: '0755'
       content: |
         #!/bin/bash
-        
-        mv /usr/local/bin/runOnce.sh /usr/local/bin/runOnce.sh.Old 
+        /usr/local/bin/fogScript.sh
+        systemctl enable laus.service
+        /usr/local/bin/syncdata.sh
+
+- name: create laus service
+  copy:
+      dest: "/etc/systemd/system/laus.service"
+      mode: '0755'
+      content: |
+        [Unit]
+        Description=Run script after network is available
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        Type=simple
+        RemainAfterExit=false
+        ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 2; done;'
+        ExecStart=/usr/local/bin/laus-server.sh
+        TimeoutStartSec=0
+
+        [Install]
+        WantedBy=default.target
+
+- name: Create general autostart to clone screen
+  copy:
+      dest: /etc/xdg/autostart/cloneScreen.desktop
+      mode: '0644'
+      content:  |
+        [Desktop Entry]
+        Version=1.0
+        Type=Application
+        Name=APP Clone Desktop Screens
+        Name[de]=Skript zum Klonen des Desktops bei Beamerbenutzung
+        Exec=/usr/local/bin/cloneScreen.sh
+        Terminal=false
+        X-GNOME-Autostart-Phase=Applications
+        NoDisplay=true
+
+- name: Clone screen on login screen
+  copy:
+      dest: /usr/share/gdm/greeter/autostart/cloneScreen.desktop
+      mode: '0644'
+      content:  |
+        [Desktop Entry]
+        Version=1.0
+        Type=Application
+        Name=APP Clone Desktop Screens
+        Name[de]=Skript zum Klonen des Desktops bei Beamerbenutzung
+        Exec=/usr/local/bin/cloneScreen.sh
+        Terminal=false
+        X-GNOME-Autostart-Phase=Applications
+        NoDisplay=true
+
+- name: Enable X11 as because xrandr is not avialable for waland yet
+  lineinfile:
+      line: "WaylandEnable=false"
+      path: /etc/gdm3/custom.conf
+      insertafter: 'daemon'
+      state: present

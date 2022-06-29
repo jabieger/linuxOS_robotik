@@ -35,6 +35,15 @@
   apt:
     deb: "{{ chromium_url.stdout }}"
 
+- name: Chromium should use simple password store ==> does not ask for keyring pwd
+  ansible.builtin.replace:
+    path: /usr/share/applications/chromium-browser.desktop
+    before: '# live site config'
+    regexp: 'Exec=chromium'
+    replace: 'Exec=chromium %U --password-store=basic'
+  when: '"chromium-browser" in ansible_facts.packages'
+
+
 - name: make sure firefox is installed as .deb and not as snap
   copy:
       dest: "/etc/apt/preferences.d/99mozilla_teamppa"

@@ -1,6 +1,11 @@
 - name: Make VLC default for media files
   ansible.builtin.replace:
     path: /usr/share/applications/defaults.list
-    before: '# live site config'
     regexp: 'rhythmbox'
+    replace: 'vlc'
+
+- name: make sure vlc is default app
+  ansible.builtin.replace:
+    path: /usr/share/applications/defaults.list
+    regexp: 'org.gnome.Totem'
     replace: 'vlc'
