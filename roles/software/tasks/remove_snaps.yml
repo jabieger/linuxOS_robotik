@@ -74,5 +74,5 @@
 
 - name:
   apt:
-    pkg: ['firefox', 'firefox-locale-de']
+    pkg: ['firefox-esr', 'firefox-esr-locale-de']
     state: present

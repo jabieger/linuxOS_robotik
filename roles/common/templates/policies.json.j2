@@ -49,14 +49,10 @@
         "installation_mode": "force_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/file/1163876/german_dictionary-2.0.6.1webext.xpi"
       },
-      "{5b1a796b-231a-4ad1-84ff-918db0818207}": {
-        "installation_mode": "force_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/file/3878852/startpage_privacy_protection-1.0.0-fx.xpi"
-      },
       "langpack-de@firefox.mozilla.org": {
         "installation_mode": "force_installed",
         "install_url": "/usr/lib/firefox-addons/extensions/langpack-de@firefox.mozilla.org.xpi"
-      }     
+      }
     },
     "SanitizeOnShutdown": {
       "Cache": true,
@@ -67,6 +63,22 @@
       "OfflineApps": true,
       "Sessions": true,
       "SiteSettings": true
+    },
+    "SearchEngines": {
+      "Add": [
+        {
+          "Name": "STARTPAGE",
+          "URLTemplate": "https://www.startpage.com/do/dsearch?query={searchTerms}",
+          "Method": "POST",
+          "IconURL": "https://www.startpage.com/favicon.ico",
+          "Alias": "startpage",
+          "Description": "Description",
+          "PostData": "query={searchTerms}",
+          "SuggestURLTemplate": "https://www.startpage.org/suggestions/q={searchTerms}"
+        }
+      ],
+      "Default": "STARTPAGE",
+      "Remove" : ["eBay", "Amazon"]
     }
   }
 }
