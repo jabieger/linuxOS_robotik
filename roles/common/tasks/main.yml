@@ -37,6 +37,8 @@
 - name: configure cron jobs
   import_tasks: cronjob.yml
 
+- name: add clone Screen .desktop file
+  import_tasks: addCloneScreenIcon.yml
 
 # - name: Copy and extract preconfigured tars
 #  import_tasks: copy_and_extract_preconfigured_tars.yml
