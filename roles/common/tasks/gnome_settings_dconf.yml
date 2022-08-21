@@ -8,7 +8,7 @@
     - name: set icons/applications
       dconf:
         key: /org/gnome/shell/favorite-apps
-        value: "['org.gnome.Nautilus.desktop','firefox.desktop','chromium-browser.desktop','libreoffice-writer.desktop','libreoffice-calc.desktop','vlc.desktop','geogebra-classic.desktop']"
+        value: "['org.gnome.Nautilus.desktop','firefox-esr.desktop','chromium-browser.desktop','libreoffice-writer.desktop','libreoffice-calc.desktop','vlc.desktop','geogebra-classic.desktop','cloneScreen.desktop']"
         state: present
     - name: set icons/applications
       dconf:
