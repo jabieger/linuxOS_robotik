@@ -74,3 +74,7 @@ All these packages are installed on any of our computers. Of course you can add 
 Of course there are packages we want to uninstall. This variable contains them.
 - **additional_software_packages_for_csr**: 
 For the computers in our computer science room/lab we have additional requirements, which is reflected in this list of software packages. These packages are only installed if the ip address or hostname is part of the "EDV?" section of the hosts file.
+
+### Student Laptops
+For deplyoing student laptops use:
+ansible-playbook laptop.yml --ask-pass --ask-become-pass --extra-vars "@vars/laptops.yml"
