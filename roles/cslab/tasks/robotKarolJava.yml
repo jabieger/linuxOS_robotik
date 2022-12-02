@@ -12,6 +12,13 @@
   copy:
     src: files/karol.prop
     dest: /home/{{ non_admin_user }}/RobotKarol3/karol.prop
+    owner: {{ non_admin_user }}
+
+- name: modify open path in karol.prop
+  ansible.builtin.replace:
+    path: /home/{{ non_admin_user }}/RobotKarol3/karol.prop
+    regexp: 'Program.OpenPath=/home/schueler'
+    replace: 'Program.OpenPath=/home/"{{ non_admin_user }}"'
 
 - name: Download robot karol and extract
   ansible.builtin.unarchive:

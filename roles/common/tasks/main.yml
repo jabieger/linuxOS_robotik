@@ -28,8 +28,9 @@
 - name: set simple password store for google chrome
   import_tasks:  set_chrome_password_store.yml
 
-- name: set firefox global policy
-  import_tasks:  set_firefox_global_policies.yml
+#  set in main script
+#- name: set firefox global policy
+#  import_tasks:  set_firefox_global_policies.yml
 
 - name: fix apparmor issues
   import_tasks: fix_apparmor_issues.yml

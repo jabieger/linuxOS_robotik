@@ -22,6 +22,8 @@
         - /usr/local/bin/fogScript.sh
         - /usr/local/bin/laus-server.sh
         - /etc/systemd/system/laus.service
+	- /usr/share/gdm/greeter/autostart/cloneScreen.desktop
+        - /etc/xdg/autostart/cloneScreen.desktop
 
 
     - name: remove some cron jobs
@@ -36,6 +38,16 @@
       tags:
         - island
 
+    - name: executable for autostart file
+      copy:
+        dest: "/usr/local/bin/runAfterLogin.sh"
+        content: |
+          #!/bin/bash
+          sleep 3
+           # clone screen
+           # set default audio
+        mode: 0755
+
     - name: allow any user to modify wlan
       copy:
         dest: "/etc/polkit-1/localauthority/50-local.d/org.freedesktop.NetworkManager.pkla"
@@ -47,7 +59,7 @@
           ResultInactive=no
           ResultActive=yes
 
-    - name: Chrome should use simple password store ==> does not ask for keyring
+    - name: replace USER with real user in createAccount.sh
       ansible.builtin.replace:
         path: /usr/local/bin/createAccount.sh
         regexp: 'USER=user'
@@ -59,7 +71,15 @@
           mode: '0755'
           content: |
             #!/bin/bash
+            sleep 3
             /usr/local/bin/createAccount.sh
+
+
+    - name: Get students user info
+      getent:
+        database: passwd
+        key: "{{ non_admin_user }}"
+
 
     - name: modify runAfterLogin
       copy:
@@ -68,8 +88,9 @@
           content: |
             #!/bin/bash
             ### copy user policy file
-            mkdir /run/user/1001/firefox/
-            cp /etc/firefox/policies/policies.json.non_global /run/user/1001/firefox/policies.json
+            mkdir /run/user/{{ getent_passwd[non_admin_user].1 }}/firefox/
+            cp /etc/firefox/policies/policies.json.non_global /run/user/{{ getent_passwd[non_admin_user].1 }}/firefox/policies.json
+
 
     - name: create .config directory
       file:
@@ -79,19 +100,15 @@
         group: "{{ non_admin_user }}"
         mode: 0700
 
-    - name: create bookmark file 
+    - name: create bookmark file
       copy:
-        dest: /home/{{ non_admin_user }}/.config/gtk-3.0/bookmarks        
+        dest: /home/{{ non_admin_user }}/.config/gtk-3.0/bookmarks
         owner: "{{ non_admin_user }}"
-        group: "{{ non_admin_user }}"        
-        mode: 0660        
+        group: "{{ non_admin_user }}"
+        mode: 0660
         content: |
           file:///home/schule/GemeinsamerOrdner GemeinsamerOrdner
-        
-    - name: Add EDUcloud-austria as bookmark
-      ansible.builtin.lineinfile:
-        path: /home/{{ non_admin_user }}/.config/gtk-3.0/bookmarks
-        line: 'davs://oc.educloud-austria.at/remote.php/webdav EDUcloud'
+          davs://oc.educloud-austria.at/remote.php/webdav EDUcloud
 
     - name: install bindfs
       apt:
