@@ -22,7 +22,7 @@
         - /usr/local/bin/fogScript.sh
         - /usr/local/bin/laus-server.sh
         - /etc/systemd/system/laus.service
-	- /usr/share/gdm/greeter/autostart/cloneScreen.desktop
+        - /usr/share/gdm/greeter/autostart/cloneScreen.desktop
         - /etc/xdg/autostart/cloneScreen.desktop
 
 
