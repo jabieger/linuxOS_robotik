@@ -77,4 +77,6 @@ For the computers in our computer science room/lab we have additional requiremen
 
 ### Student Laptops
 For deplyoing student laptops use:
+~~~
 ansible-playbook laptop.yml --ask-pass --ask-become-pass --extra-vars "@vars/laptops.yml"
+~~~
