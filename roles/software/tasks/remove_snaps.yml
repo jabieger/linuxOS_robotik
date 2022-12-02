@@ -23,26 +23,8 @@
     pkg: chromium-codecs-ffmpeg-extra
     state: absent
 
-- name: get latest chromium package url
-  shell: echo "http://packages.linuxmint.com/"$(wget -q -O- "http://packages.linuxmint.com/search.php?release=una&section=any&keyword=chromium" | grep "<b>chromium</b>" -A 4 |grep href |cut -d '"' -f2)
-  register: chromium_url
-
-- name: Print chromium URL/Version
-  debug:
-    msg: "Installing chromium from: {{ chromium_url.stdout }}"
-
-- name: install chrome from deb
-  apt:
-    deb: "{{ chromium_url.stdout }}"
-
-- name: Chromium should use simple password store ==> does not ask for keyring pwd
-  ansible.builtin.replace:
-    path: /usr/share/applications/chromium-browser.desktop
-    before: '# live site config'
-    regexp: 'Exec=chromium'
-    replace: 'Exec=chromium %U --password-store=basic'
-  when: '"chromium-browser" in ansible_facts.packages'
-
+- name: install chromium as deb from linux mint
+  import_tasks: chromium_as_deb_from_linux_mint.yml
 
 - name: make sure firefox is installed as .deb and not as snap
   copy:
@@ -67,10 +49,16 @@
   apt_repository:
     repo: deb https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu jammy main
     state: present
-    filename: firefox_team_ppa.list
+    filename: firefox_team_ppa
 
 - name: Make system apt update & upgrade
   import_tasks: system_update.yml
+
+- name: remove firefox if present - will use firefox-esr
+  apt:
+    pkg: ['firefox']
+    state: absent
+    purge: yes
 
 - name:
   apt:

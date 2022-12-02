@@ -1,20 +1,53 @@
+- name: create firefox directory
+  file:
+    path: /usr/lib/firefox-esr/
+    state: directory
+
+- name: create firefox directory
+  file:
+    path: /usr/lib/firefox-esr/defaults/
+    state: directory
+
+- name: create firefox directory
+  file:
+    path: /usr/lib/firefox-esr/defaults/pref/
+    state: directory
+
 - name: Create file to enable per user templates
   copy:
-    dest: /usr/lib/firefox/defaults/pref/autoconfig.js
+    dest: /usr/lib/firefox-esr/defaults/pref/autoconfig.js
     content: |
         //
         pref("toolkit.policies.perUserDir",true);
 
-- file:
-    path: /run/user/1000/firefox/
+- name: Get students user info
+  getent:
+    database: passwd
+    key: "{{ non_admin_user }}"
+
+- name:
+  file:
+    path: /run/user/{{ getent_passwd[non_admin_user].1 }}/firefox/
     state: directory
 
-
+## just here for documentation - systemd wipes /run/user/{{uid}} so we will copy
+## the file after login
+#- name: copy firefox policies.json template
+  #ansible.builtin.template:
+    #src: policies.json.j2
+    #dest: /run/user/{{ getent_passwd[non_admin_user].1 }}/firefox/policies.json
+    #owner: tom
+    #group: tom
+    #mode: '0644'
+- name: create firefox directory
+  file:
+    path: /etc/firefox/policies/
+    state: directory
+    
 - name: copy firefox policies.json template
   ansible.builtin.template:
-    #src: /home/tom/ansible/roles/common/templates/policies.json.j2
     src: policies.json.j2
-    dest: /run/user/1000/firefox/policies.json
-    owner: tom
-    group: tom
+    dest: /etc/firefox/policies/policies.json.non_global
+    owner: root
+    group: root
     mode: '0644'

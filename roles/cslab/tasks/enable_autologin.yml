@@ -1,9 +1,11 @@
-- name: Setup automatic login for schueler
+- name: Setup automatic login for {{ non_admin_user }} 
   lineinfile:
       line: AutomaticLogin={{ non_admin_user }}
       path: /etc/gdm3/custom.conf
       insertafter: '^\[daemon\]'
       state: present
+  tags: 
+    - island
 
 - name: Enable automatic login
   lineinfile:
@@ -11,6 +13,8 @@
       path: /etc/gdm3/custom.conf
       insertafter: '^AutomaticLogin={{ non_admin_user }}'
       state: present
+  tags: 
+    - island
 
 - name: Enable X11 as veyon does not support wayland yet
   lineinfile:

@@ -41,3 +41,14 @@
     keyserver: keyserver.ubuntu.com
     id: 4B776B9B1C1938F18C023C8C49ABD150D5D0DCC6
     keyring: /etc/apt/trusted.gpg.d/veyon.gpg
+
+- name: add veyon team ppa
+  apt_repository:
+    repo: deb https://ppa.launchpadcontent.net/veyon/stable/ubuntu jammy main
+    state: present
+    filename: veyon_team_ppa
+
+- name: install veyon_pub_key
+  apt:
+    pkg: veyon
+    state: present

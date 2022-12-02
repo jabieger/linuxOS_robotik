@@ -53,11 +53,11 @@ remove_software_packages:
    - bluez
    - bluez-obexd
    - bluez-cups
-   - gnome-mahjongg 
+   - gnome-mahjongg
    - gnome-mines
    - gnome-sudoku
    - gnome-aisleriot
-   - gnome-online-accounts   
+   - gnome-online-accounts
    - hunspell-de-ch-frami
 
 additional_software_packages_for_csr:
@@ -86,4 +86,3 @@ additional_software_packages_for_csr:
    - dia
    - synfigstudio
    - thonny
-   - veyon-service

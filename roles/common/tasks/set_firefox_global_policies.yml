@@ -5,9 +5,9 @@
 
 - name: Create file to enable per user templates
   copy:
-    dest: /usr/lib/firefox/defaults/pref/autoconfig.js
+    dest: /usr/lib/firefox-esr/defaults/pref/autoconfig.js
     content: |
-        //        
+        //
         lockPref("trailhead.firstrun.branches", "nofirstrun-empty");
         lockPref("browser.aboutwelcome.enabled", false);
 

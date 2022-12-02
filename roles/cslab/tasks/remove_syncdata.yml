@@ -2,8 +2,19 @@
   ansible.builtin.file:
     path: /usr/local/bin/syncdata.sh
     state: absent
+  tags: 
+    - island
+
+- name: Remove rsyncsecret
+  ansible.builtin.file:
+    path: /etc/rsyncsecret
+    state: absent
+  tags: 
+    - island
 
 - name: remove sync data from cron job
   cron:
     name: "sync data"
     state: absent
+  tags:
+    - island

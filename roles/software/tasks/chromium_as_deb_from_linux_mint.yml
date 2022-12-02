@@ -1,0 +1,40 @@
+- name: make sure chromium is isntalled as deb and not as snap
+  copy:
+      dest: "/etc/apt/preferences.d/pin-chromium"
+      mode: '0644'
+      content: |
+        Package: *
+        Pin: release o=linuxmint
+        Pin-Priority: -1
+
+        Package: chromium
+        Pin: release o=linuxmint
+        Pin-Priority: 1000
+
+- name: import apt key for chromium from linux mint
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: A6616109451BBBF2
+    keyring: /etc/apt/trusted.gpg.d/chromium_mint.gpg
+
+- name: Add mint chromium repo
+  apt_repository:
+    repo: deb  http://packages.linuxmint.com vera upstream
+    state: present
+    filename: mint-vera
+
+- name: Make system apt update & upgrade
+  import_tasks: system_update.yml
+
+- name:
+  apt:
+    pkg: ['chromium']
+    state: present
+
+- name: Chromium should use simple password store ==> does not ask for keyring pwd
+  ansible.builtin.replace:
+    path: /usr/share/applications/chromium-browser.desktop
+    before: '# live site config'
+    regexp: 'Exec=chromium'
+    replace: 'Exec=chromium %U --password-store=basic'
+  when: '"chromium-browser" in ansible_facts.packages'    

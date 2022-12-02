@@ -1,0 +1,127 @@
+- hosts: TOTALINVENTORY
+  become: 'yes'
+  roles:
+    - software
+    - common
+
+  tasks:
+    - name: include cslab role if necessary
+      include_role:
+        name: cslab
+      when: inventory_hostname in lookup('inventory_hostnames', 'EDV1:EDV2:EDV3')
+      tags: island
+
+    - name: Remove some files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /usr/local/bin/syncdata.sh
+        - /usr/local/bin/check_veyon.sh
+        - /usr/local/bin/fixMount.sh
+        - /usr/local/bin/fogScript.sh
+        - /usr/local/bin/laus-server.sh
+        - /etc/systemd/system/laus.service
+
+
+    - name: remove some cron jobs
+      cron:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - shutdown 1
+        - shutdown 2
+        - shutdown 3
+        - sync data
+      tags:
+        - island
+
+    - name: allow any user to modify wlan
+      copy:
+        dest: "/etc/polkit-1/localauthority/50-local.d/org.freedesktop.NetworkManager.pkla"
+        content: |
+          [Let all users modify system settings for network]
+          Identity=unix-user:*
+          Action=org.freedesktop.NetworkManager.*
+          ResultAny=no
+          ResultInactive=no
+          ResultActive=yes
+
+    - name: Chrome should use simple password store ==> does not ask for keyring
+      ansible.builtin.replace:
+        path: /usr/local/bin/createAccount.sh
+        regexp: 'USER=user'
+        replace: 'USER="{{ non_admin_user }}"'
+
+    - name: modify runOnce script
+      copy:
+          dest: "/usr/local/bin/runOnce.sh"
+          mode: '0755'
+          content: |
+            #!/bin/bash
+            /usr/local/bin/createAccount.sh
+
+    - name: modify runAfterLogin
+      copy:
+          dest: "/usr/local/bin/runAfterLogin.sh"
+          mode: '0755'
+          content: |
+            #!/bin/bash
+            ### copy user policy file
+            mkdir /run/user/1001/firefox/
+            cp /etc/firefox/policies/policies.json.non_global /run/user/1001/firefox/policies.json
+
+    - name: create .config directory
+      file:
+        path: /home/{{ non_admin_user }}/.config/gtk-3.0/
+        state: directory
+        owner: "{{ non_admin_user }}"
+        group: "{{ non_admin_user }}"
+        mode: 0700
+
+    - name: create bookmark file 
+      copy:
+        dest: /home/{{ non_admin_user }}/.config/gtk-3.0/bookmarks        
+        owner: "{{ non_admin_user }}"
+        group: "{{ non_admin_user }}"        
+        mode: 0660        
+        content: |
+          file:///home/schule/GemeinsamerOrdner GemeinsamerOrdner
+        
+    - name: Add EDUcloud-austria as bookmark
+      ansible.builtin.lineinfile:
+        path: /home/{{ non_admin_user }}/.config/gtk-3.0/bookmarks
+        line: 'davs://oc.educloud-austria.at/remote.php/webdav EDUcloud'
+
+    - name: install bindfs
+      apt:
+        pkg: bindfs
+        state: present
+
+    - name: set registration post url
+      ansible.builtin.replace:
+        path: /usr/local/bin/createAccount.sh
+        regexp: 'REGISTER_SERIAL_URL'
+        replace: "{{ register_serial_url }}"
+
+    - name: remove firefox if present - will use firefox-esr
+      apt:
+        pkg: ['firefox']
+        state: absent
+        purge: yes
+
+    - name: Remove apt-cache folder for imaging
+      file:
+        state: absent
+        path: /var/cache/apt/
+
+    - name: set icons in task bar
+      block:
+      - name: set icons/applications
+        dconf:
+          key: /org/gnome/shell/favorite-apps
+          value: "['org.gnome.Nautilus.desktop','firefox-esr.desktop','chromium-browser.desktop','libreoffice-writer.desktop','libreoffice-calc.desktop','vlc.desktop','geogebra-classic.desktop']"
+          state: present
+
+      become: yes
+      become_user: "{{ non_admin_user }}"
