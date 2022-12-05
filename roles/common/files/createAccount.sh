@@ -29,7 +29,7 @@ done
 
 pass=$(openssl passwd -1 ${pwd1})
 #pass=$(perl -e 'print crypt($pwd1, "098212ATG")' $password)
-useradd -m -p "$pass" "$login"
+useradd -m -p "$pass" "$login" -s /bin/bash 
 [ $? -eq 0 ] &&  zenity --info --text="Der Benutzer wurde hinzugefügt."|| zenity --info --text="Der Benutzer konnte nicht erzeugt werden"
 
 usermod -aG sudo $login
