@@ -42,4 +42,4 @@
     src: "/data/local/"
     dest: "/home/{{ non_admin_user }}/Schreibtisch/unterricht"
     state: link
-  when: inventory_hostname in groups["KlassenPC"]
+  when: rsyncServerURL is defined
