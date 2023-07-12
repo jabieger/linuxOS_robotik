@@ -1,7 +1,7 @@
-admin_user: admin
+admin_user: lehrer
 non_admin_user: schueler
-non_admin_password: CHANGE
-non_admin_password_classroom: student01
+non_admin_password: schueler
+non_admin_password_classroom: schueler
 
 ## NOT RECOMMENDED BUT POSSIBLE - AT LEAST MAKE SURE YOU DO NOT CHECK THIS FILE IN
 # For SSH-login
@@ -14,14 +14,14 @@ non_admin_password_classroom: student01
 
 #uncomment and adapt if you want to execute ansible-pull
 # make sure you use your own repository.
-#ansible_pull_repo_url: https://gitlab.com/MYPROJECT
+ansible_pull_repo_url: https://github.com/jabieger/linuxOS_robotik
 
 #uncomment if you have an rsync server folder to regularly sync to the clients
 #helps to distribute files from a central point
 #rsyncServerURL: RSYNCUSER@SERVER::class
 #rsyncPassword: myPassword
 
-firefox_start_page: https://linux-bildung.at|https://www.ecosia.org
+firefox_start_page: https://www.ecosia.org
 firefox_additional_start_page: https://www.ecosia.org
 
 # these are bookmarks for firefox
