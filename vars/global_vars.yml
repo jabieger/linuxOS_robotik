@@ -28,21 +28,3 @@ firefox_additional_start_page: https://www.ecosia.org
 bookmarks:
     - name: Google Maps
       value: https://maps.google.com
-    - name: Duden
-      value: https://www.duden.de/woerterbuch
-    - name: Youtube
-      value: https://www.youtube.com
-    - name: Google Maps
-      value: https://maps.google.com
-    - name: Moodle
-      value: https://www.gymdb.at/moodle30/
-    - name: Leo
-      value: https://dict.leo.org/englisch-deutsch/
-    - name: Cambridge Dict.
-      value: https://dictionary.cambridge.org/de
-    - name: DeepL
-      value: https://www.deepl.com/translator/
-    - name: Wikipedia
-      value: https://wikipedia.de
-    - name: Ecosia
-      value: https://www.ecosia.de
