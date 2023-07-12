@@ -4,8 +4,8 @@
 - name: recreate home
   import_tasks: recreate_home.yml
 
-- name: set default apps
-  import_tasks: set_default_apps.yml
+#- name: set default apps
+#  import_tasks: set_default_apps.yml
 
 - name: Remove files from autostart
   import_tasks: remove_files_from_autostart.yml
@@ -22,11 +22,11 @@
 - name: Create rsync task
   import_tasks: create_rsync.yml
 
-- name: Change some gnome settings
-  import_tasks: gnome_settings_dconf.yml
+#- name: Change some gnome settings
+#  import_tasks: gnome_settings_dconf.yml
 
-- name: set simple password store for google chrome
-  import_tasks:  set_chrome_password_store.yml
+#- name: set simple password store for google chrome
+#  import_tasks:  set_chrome_password_store.yml
 
 #  set in main script
 #- name: set firefox global policy
