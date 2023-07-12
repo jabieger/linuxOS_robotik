@@ -17,11 +17,11 @@
 - name: install ansible-pull
   import_tasks: ansible_pull.yml
 
-- name: Install 3rd party software
-  import_tasks: install_3rdparty.yml
+#- name: Install 3rd party software
+#  import_tasks: install_3rdparty.yml
 
-- name: Install latest audacity
-  import_tasks: audacity.yml
+#- name: Install latest audacity
+#  import_tasks: audacity.yml
 
 - name: remove not required packages
   apt:
