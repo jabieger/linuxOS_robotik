@@ -29,8 +29,8 @@
     state: absent
     purge: yes
 
-- name: remove snaps
-  import_tasks: remove_snaps.yml
+#- name: remove snaps
+#  import_tasks: remove_snaps.yml
 
 - name: reconfigure libdvd-pkg for dvd
   shell:
