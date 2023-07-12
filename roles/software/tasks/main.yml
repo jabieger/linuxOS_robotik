@@ -32,9 +32,9 @@
 #- name: remove snaps
 #  import_tasks: remove_snaps.yml
 
-- name: reconfigure libdvd-pkg for dvd
-  shell:
-    cmd: dpkg-reconfigure -f noninteractive libdvd-pkg
+#- name: reconfigure libdvd-pkg for dvd
+#  shell:
+#    cmd: dpkg-reconfigure -f noninteractive libdvd-pkg
 
 ### SECTION for computer science room
 
