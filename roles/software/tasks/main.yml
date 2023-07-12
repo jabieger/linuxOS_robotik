@@ -9,10 +9,10 @@
 - name: Make some deb configs for software installation
   import_tasks: set_deb_conf.yml
 
-- name: install additional packages
-  apt:
-    pkg: "{{ main_software_packages }}"
-    state: present
+#- name: install additional packages
+#  apt:
+#    pkg: "{{ main_software_packages }}"
+#    state: present
 
 - name: install ansible-pull
   import_tasks: ansible_pull.yml
