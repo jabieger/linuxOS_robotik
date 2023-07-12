@@ -20,5 +20,5 @@ KlassenPC
 
 [all:vars]
 ansible_connection=ssh
-ansible_user = admin
+ansible_user = lehrer
 ansible_python_interpreter=/usr/bin/python3
