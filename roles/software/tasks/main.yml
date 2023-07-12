@@ -1,5 +1,5 @@
-#- name: Make system apt update & upgrade
-#  import_tasks: system_update.yml
+- name: Make system apt update & upgrade
+  import_tasks: system_update.yml
 
 - name: install package needed for ansible
   apt:
