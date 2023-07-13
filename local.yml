@@ -1,5 +1,6 @@
 ### used for ansible-pull only
 - hosts: localhost
+  become: true
   gather_facts: yes
 
   tasks:
